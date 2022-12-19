@@ -3,6 +3,7 @@
 #include "GCS_Mavlink.h"
 #include <AP_RPM/AP_RPM_config.h>
 #include <AP_EFI/AP_EFI_config.h>
+#include "AP_NICSimpleOutput/AP_SimpleOutput.h"
 
 MAV_TYPE GCS_Copter::frame_type() const
 {
@@ -862,6 +863,13 @@ MAV_RESULT GCS_MAVLINK_Copter::handle_command_long_packet(const mavlink_command_
             return MAV_RESULT_ACCEPTED;
         }
         return MAV_RESULT_FAILED;
+#endif
+#if SIMPLEOUTPUT == ENABLED
+    case MAVLINK_MSG_ID_NIC_TEST:    
+        //AP_NICSimpleOutput simpleOutput;
+        //simpleOutput.release();
+        gcs().send_text(MAV_SEVERITY_INFO,"Simple output activated");
+        return MAV_RESULT_ACCEPTED;
 #endif
 
 #if PARACHUTE == ENABLED
