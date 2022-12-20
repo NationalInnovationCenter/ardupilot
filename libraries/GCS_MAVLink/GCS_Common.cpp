@@ -3719,6 +3719,11 @@ void GCS_MAVLINK::handle_common_message(const mavlink_message_t &msg)
     case MAVLINK_MSG_ID_FILE_TRANSFER_PROTOCOL:
         handle_file_transfer_protocol(msg);
         break;
+    case MAVLINK_MSG_ID_NIC_TEST:    
+        //AP_NICSimpleOutput simpleOutput;
+        //simpleOutput.release();
+        gcs().send_text(MAV_SEVERITY_CRITICAL,"NIC Message received");
+        break;
 
 #if AP_CAMERA_ENABLED
     case MAVLINK_MSG_ID_DIGICAM_CONTROL:

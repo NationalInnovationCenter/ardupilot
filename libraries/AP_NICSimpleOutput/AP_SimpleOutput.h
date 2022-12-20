@@ -41,6 +41,7 @@ public:
 private:
     static AP_NICSimpleOutput *_singleton;
         
+        
 };
 
 namespace AP {
